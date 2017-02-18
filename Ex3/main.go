@@ -1,10 +1,8 @@
 package main
 
 import (
-	geo "golangexp/geometry"
-	"golangexp/github"
-	"encoding/json"
 	"fmt"
+	"golangexp/github"
 	"html/template"
 	"log"
 	"os"
@@ -39,15 +37,7 @@ var issueList = template.Must(template.New("issuelist").Parse(`
 //var report = template.Must(template.New("issueList").Funcs(template.FuncMap{"daysAgo": daysAgo}).Parse(issueList))
 
 func main() {
-	// first example: Marshalling json
-	whl := geo.Wheel{geo.Circle{geo.Point{2, 4}, 5}, 20}
-	whlJson, err := json.MarshalIndent(whl, "", "	")
-	if err != nil {
-		log.Fatalf("JSON Marshalling failed: %s", err)
-	}
-	fmt.Printf("%s\n\n", whlJson)
 
-	// Second example: github search issue
 	result, err := github.SearchIssues(os.Args[1:])
 	if err != nil {
 		log.Fatal(err)
@@ -58,7 +48,6 @@ func main() {
 			item.Number, item.User.Login, item.Title)
 	}
 
-	// Third Example
 	results, err := github.SearchIssues(os.Args[1:])
 	if err != nil {
 		log.Fatal(err)
