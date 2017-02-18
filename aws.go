@@ -1,13 +1,13 @@
 package main
 
 import (
-	//geo "awesomeProject/geometry"
+	geo "awesomeProject/geometry"
 	"awesomeProject/github"
-	//"encoding/json"
-	//"fmt"
+	"encoding/json"
+	"fmt"
+	"html/template"
 	"log"
 	"os"
-	"html/template"
 	"time"
 )
 
@@ -24,6 +24,7 @@ var issueList = template.Must(template.New("issuelist").Parse(`
 	<th>User</th>
 	<th>Title</th>
 </tr>
+</table>
 {{range .Items}}
 <tr>
 	<td><a href='{{.HTMLURL}}'>{{.Number}}</td>
@@ -34,28 +35,28 @@ var issueList = template.Must(template.New("issuelist").Parse(`
 {{end}}
 </table>
 `))
+
 //var report = template.Must(template.New("issueList").Funcs(template.FuncMap{"daysAgo": daysAgo}).Parse(issueList))
 
 func main() {
 	// first example: Marshalling json
-	//whl := geo.Wheel{geo.Circle{geo.Point{2, 4}, 5}, 20}
-	//whlJson, err := json.MarshalIndent(whl, "", "	")
-	//if err != nil {
-	//	log.Fatalf("JSON Marshalling failed: %s", err)
-	//}
-	//fmt.Printf("%s\n\n", whlJson)
-	//
-	//// Second example: github search issue
-	//result, err := github.SearchIssues(os.Args[1:])
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
-	//fmt.Printf("%d issues:\n", result.TotalCount)
-	//for _, item := range result.Items {
-	//	fmt.Printf("#%-5d %9.9s %.55s\n",
-	//		item.Number, item.User.Login, item.Title)
-	//}
+	whl := geo.Wheel{geo.Circle{geo.Point{2, 4}, 5}, 20}
+	whlJson, err := json.MarshalIndent(whl, "", "	")
+	if err != nil {
+		log.Fatalf("JSON Marshalling failed: %s", err)
+	}
+	fmt.Printf("%s\n\n", whlJson)
 
+	// Second example: github search issue
+	result, err := github.SearchIssues(os.Args[1:])
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%d issues:\n", result.TotalCount)
+	for _, item := range result.Items {
+		fmt.Printf("#%-5d %9.9s %.55s\n",
+			item.Number, item.User.Login, item.Title)
+	}
 
 	// Third Example
 	results, err := github.SearchIssues(os.Args[1:])
