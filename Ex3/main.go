@@ -34,8 +34,8 @@ var issueList = template.Must(template.New("issuelist").Parse(`
 </table>
 `))
 
-//var report = template.Must(template.New("issueList").Funcs(template.FuncMap{"daysAgo": daysAgo}).Parse(issueList))
-
+// example of parameter in the command line:
+// go run main.go repo:golang/go is:open json decoder
 func main() {
 
 	result, err := github.SearchIssues(os.Args[1:])

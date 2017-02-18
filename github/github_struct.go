@@ -21,6 +21,6 @@ type Issue struct {
 }
 
 type User struct {
-	Login string `json:"login"`
-	HTMLURL   string    `json:"url"`
+	Login   string `json:"login"`
+	HTMLURL string `json:"url"`
 }

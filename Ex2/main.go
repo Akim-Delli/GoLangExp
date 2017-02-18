@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+// example of parameter in the command line:
+// go run main.go repo:golang/go is:open json decoder
 func main() {
 
 	// Second example: github search issue

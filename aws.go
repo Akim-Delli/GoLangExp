@@ -1,10 +1,10 @@
 package main
 
 import (
-	geo "golangexp/geometry"
-	"golangexp/github"
 	"encoding/json"
 	"fmt"
+	geo "golangexp/geometry"
+	"golangexp/github"
 	"html/template"
 	"log"
 	"os"

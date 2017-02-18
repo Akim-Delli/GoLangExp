@@ -1,11 +1,11 @@
 package github
 
 import (
-	"net/url"
-	"strings"
-	"net/http"
 	"encoding/json"
 	"fmt"
+	"net/http"
+	"net/url"
+	"strings"
 )
 
 // SearchIssues queries the github issue tracker.
